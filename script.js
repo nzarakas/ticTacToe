@@ -28,8 +28,28 @@ function Gameboard(){
         board[r][c].setMark(m);
     };
 
+    function checkVictory() {
+        for (let r = 0; r < 2; r++){
+            if (board[r][0].getMark() === board[r][1].getMark() 
+                && board[r][1].getMark() === board[r][2].getMark()
+                && board[r][0].getMark() !== ' '){
+                return true;
+            }
+            else return false;
+        }
+        
+    }
 
-    return {getBoard, printBoard, setMarkOnBoard};
+    function resetBoard() {
+        for(let i = 0; i < rows; i++){
+            for(let j = 0; j < columns; j++){
+                board[i][j].resetMark();
+                
+            }
+        }
+    }
+
+    return {getBoard, printBoard, setMarkOnBoard, checkVictory, resetBoard};
 }
 
 //controls what's inside each cell of the array
@@ -44,7 +64,13 @@ function Cell(){
         }
     }
 
-    return {getMark, setMark};
+    function resetMark() {
+        if (mark !== ' '){
+            mark = ' ';
+        }
+    }
+
+    return {getMark, setMark, resetMark};
 }
 //delete below test
 
@@ -52,11 +78,7 @@ const testBoard = Gameboard();
 testBoard.printBoard();
 console.log(testBoard.getBoard());
 console.log(typeof testBoard);
-let PlayerOne = {
-    name: 'PlayerOneName',
-    mark: 'X',
-    score: 0
-}
+
 // testBoard[2].setMark(PlayerOne.mark);
 //until here
 
@@ -91,10 +113,11 @@ function GameController(
             currentPlayer = PlayerOne;
         }
     }
+    
     function makeMove(){
-        const row = 1;
-        const column = 2; 
-        board.setMarkOnBoard(row, column, currentPlayer.mark);   
+        const rowChoice = prompt("Select which row (0-2):");
+        const columnChoice = prompt("Select which column (0-2):");
+        board.setMarkOnBoard(rowChoice, columnChoice, currentPlayer.mark);   
     }
 
     function playRound(){
@@ -102,22 +125,28 @@ function GameController(
             // if no victory achieved, run function that checks if there are any valid moves left.(is the board full?)
             //Declare Tie if no victory but board is full.
         
-        // run a function that switches active player? (this is probably declared in GameController)
-        switchPlayer();
+        
+        
         makeMove();
-        // run a function that places a mark in a cell that the active player selected for this round. 
-        // (where is this function declared?) - maybe this function exists here and can be analyzed into two
-        // subfunctions:
-            // function that takes user input regarding which row and which column they choose 
-            // e.g playerOption in Cell() -> r=2, c=1. (Two functions?)
-            // board[2][1] 
-        board.printBoard();
+        if (board.checkVictory()){
+            console.log('Game won!');
+            board.printBoard();
+            console.log(board.getBoard());
+            board.resetBoard();
+        }
+        else {
+            switchPlayer();
+            board.printBoard();
+            console.log(board.getBoard());
+        }
+        
+        
         //printboard at the end of the round 
     }
     return {switchPlayer, makeMove, playRound};
 }
 
 const game = GameController();
-game.playRound();
+// game.playRound();
 
 
