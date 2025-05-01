@@ -29,15 +29,45 @@ function Gameboard(){
     };
 
     function checkVictory() {
-        for (let r = 0; r < 2; r++){
+        
+        //checks if there is a row victory (3 same marks in a row)
+        for (let r = 0; r <= 2; r++){
             if (board[r][0].getMark() === board[r][1].getMark() 
                 && board[r][1].getMark() === board[r][2].getMark()
                 && board[r][0].getMark() !== ' '){
+                    console.log(`row`);
                 return true;
             }
-            else return false;
+            
         }
+        //checks if there is a column victory (3 same marks in a column)
+        for (let c = 0; c <= 2; c++ ){
+            if (board[0][c].getMark() === board[1][c].getMark() 
+                && board[1][c].getMark() === board[2][c].getMark()
+                && board[0][c].getMark() !== ' '){
+                    console.log(`column`);
+                return true;
+            }
+            
+        }
+        //checks if there is a diagonal victory in the form of a '\'
+        if (board[0][0].getMark() === board[1][1].getMark() 
+            && board[1][1].getMark() === board[2][2].getMark()
+            && board[0][0].getMark() !== ' '){
+                console.log(`diagonal 1 `);
+                return true;
+            }
+            
         
+        //checks if there is a diagonal victory in the form of a '/'
+        else if (board[0][2].getMark() === board[1][1].getMark() 
+            && board[1][1].getMark() === board[2][0].getMark()
+            && board[0][2].getMark() !== ' '){
+                console.log(`diagonal 2 `);
+                return true;
+            }
+            
+        return false;   
     }
 
     function resetBoard() {

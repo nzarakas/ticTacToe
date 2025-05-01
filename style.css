@@ -1,0 +1,106 @@
+@font-face {
+    font-family: KGBrokenVesselsSketch;
+    src: url(fonts/KGBrokenVesselsSketch.ttf) format('truetype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: KGBrokenVesselsSketch, sans-serif;
+    color: #fbf7f5;
+}
+body {
+    height: 100vh;
+}
+#container {
+    height: 100%;
+    background-color: #31343A;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+}
+#header {
+    grid-area: 1/1/2/4;
+    margin: auto;
+    font-size: 4rem;
+    
+    margin-bottom: 3rem;
+}
+#leftBlock {
+    grid-area: 2/1/3/2;
+}
+#cellContainer {
+    grid-area: 2/2/3/3;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 9rem 9rem 9rem;
+    grid-template-rows: 9rem 9rem 9rem;
+}
+.cell {
+    /* border: solid thin black;    */
+}
+
+#rightBlock {
+    grid-area: 2/3/3/4;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    font-size: 2rem;
+
+    >#buttons .button {
+        font-size: 1.2rem;
+        border: solid 3px #fbf7f5;
+        background-color: transparent;
+        padding: 4px;
+    }
+}
+#footer {
+    grid-area: 3/1/4/4;
+    font-size: 0.7rem;
+    padding-left: 3rem;
+    padding-top: 6rem;
+}
+
+
+/* APPLYING BORDERS TO CELLS TO CREATE THE TIC-TAC-TOE MATRIX */
+#cell-1 {
+    border-right: solid thick #fbf7f5;
+    border-bottom: solid thick #fbf7f5;
+}
+#cell-2 {
+    border-right: solid thick #fbf7f5;
+    border-bottom: solid thick #fbf7f5;
+    border-left: solid thick #fbf7f5;
+}
+#cell-3 {
+    border-left: solid thick #fbf7f5;
+    border-bottom: solid thick #fbf7f5;
+}
+#cell-4 {
+    border-top: solid thick #fbf7f5;
+    border-right: solid thick #fbf7f5;
+    border-bottom: solid thick #fbf7f5;
+}
+#cell-5 {
+    border: solid thick #fbf7f5;
+}
+#cell-6 {
+    border-left: solid thick #fbf7f5;
+    border-top: solid thick #fbf7f5;
+    border-bottom: solid thick #fbf7f5;
+}
+#cell-7 {
+    border-top: solid thick #fbf7f5;
+    border-right: solid thick #fbf7f5;
+}
+#cell-8 {
+    border-left: solid thick #fbf7f5;
+    border-top: solid thick #fbf7f5;
+    border-right: solid thick #fbf7f5;
+}
+#cell-9 {
+    border-left: solid thick #fbf7f5;
+    border-top: solid thick #fbf7f5;
+}
